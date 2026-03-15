@@ -9,3 +9,12 @@ function toggle-starship-theme
         echo "Switched to Gruvbox Light"
     end
 end
+
+# Replace ls with eza
+alias ls='eza --icons'
+alias ll='eza -l --header --icons'
+alias la='eza -la --header --icons'
+alias tree='eza --tree'
+
+zoxide init fish | source
+alias ls='z'
