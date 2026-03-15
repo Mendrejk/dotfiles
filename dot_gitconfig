@@ -1,0 +1,29 @@
+[include]
+	path = ~/.delta-themes.gitconfig
+
+[user]
+	email = sebastian.lakomy@protonmail.com
+	name = Mendrejk
+
+[push]
+	autoSetupRemote = true
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+	hyperlinks = true
+	side-by-side = true
+	features = gruvbox-dark
+
+[merge]
+	conflictStyle = zdiff3
+
+[diff]
+	colorMoved = default
