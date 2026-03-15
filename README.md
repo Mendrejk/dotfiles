@@ -41,3 +41,30 @@ Add the following paths to Chezmoi to capture the system state:
 * `~/.config/spotify-player/`
 * `~/.config/kitty/`
 * `~/.Xresources`
+
+## Setup Instructions
+
+### 1. Install Core Dependencies
+Ensure `git`, `chezmoi`, and `paru` (or another AUR helper) are installed.
+
+### 2. Clone and Apply Dotfiles
+```bash
+chezmoi init git@github.com:Mendrejk/dotfiles.git
+chezmoi apply
+```
+
+### 3. Install Packages
+```bash
+paru -S awesome picom ulauncher kitty fish zoxide fzf fd eza fastfetch spotify-player helix neovim zed-editor-bin zen-browser-bin nitrogen papirus-icon-theme bibata-cursor-theme-bin
+```
+
+### 4. Post-Install Configuration
+* Download a wallpaper to `~/Pictures/` and apply it using `nitrogen ~/Pictures/`.
+* Apply the Gruvbox folder theme to Papirus:
+  ```bash
+  git clone [https://github.com/xelser/gruvbox-papirus-folders](https://github.com/xelser/gruvbox-papirus-folders) /tmp/gruvbox-folders
+  cd /tmp/gruvbox-folders
+  sudo cp -r src/* /usr/share/icons/Papirus/
+  ./papirus-folders -C gruvbox-material-yellow --theme Papirus-Dark
+  ```
+* Set the cursor to `Bibata-Modern-Amber` using `lxappearance`.
