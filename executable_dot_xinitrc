@@ -1,0 +1,16 @@
+#!/bin/bash
+# 1. Force the cursor theme
+xsetroot -cursor_name left_ptr
+xrdb -merge ~/.Xresources
+export XCURSOR_THEME=Bibata-Modern-Ice
+
+# 2. Fix DBus environment
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+dbus-update-activation-environment --systemd --all
+
+# 3. Start background apps
+nitrogen --restore &
+(sleep 3 && ulauncher --hide-window --no-window-shadow) &
+
+# 4. Launch Awesome
+exec awesome
