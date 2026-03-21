@@ -55,7 +55,7 @@ chezmoi apply
 
 ### 3. Install Packages
 ```bash
-paru -S awesome picom ulauncher kitty fish zoxide fzf fd eza fastfetch spotify-player helix neovim zed-editor-bin zen-browser-bin nitrogen papirus-icon-theme bibata-cursor-theme-bin
+paru -S awesome picom ulauncher kitty fish zoxide fzf fd eza fastfetch spotify-player helix neovim zed-editor-bin zen-browser-bin nitrogen papirus-icon-theme bibata-cursor-theme-bin rigrep dbus-x11 avahi nss-mdns
 ```
 
 ### 4. Post-Install Configuration
@@ -68,3 +68,24 @@ paru -S awesome picom ulauncher kitty fish zoxide fzf fd eza fastfetch spotify-p
   ./papirus-folders -C gruvbox-material-yellow --theme Papirus-Dark
   ```
 * Set the cursor to `Bibata-Modern-Amber` using `lxappearance`.
+
+### 5. Hyper-V Enhanced Session (XRDP) Configuration
+Switch XRDP to standard TCP network mode instead of `vsock` to allow GlazeWM to tile the window:
+```bash
+sudo sed -i 's/^port=vsock:\/\/-1:3389/port=3389/g' /etc/xrdp/xrdp.ini
+sudo sed -i 's/^use_vsock=true/use_vsock=false/g' /etc/xrdp/xrdp.ini
+sudo systemctl restart xrdp
+
+Enable mDNS to connect via archlinux.local instead of tracking dynamic IPs:
+```bash
+sudo systemctl enable --now avahi-daemon.service
+```
+
+Create a Windows RDP configuration file (`ArchVM.rdp`) with these specific flags to force resolution scaling and capture shortcuts:
+```
+full address:s:archlinux.local
+smart sizing:i:1
+keyboardhook:i:1
+```
+
+```

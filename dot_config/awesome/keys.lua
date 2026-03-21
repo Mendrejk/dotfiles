@@ -99,7 +99,7 @@ keys.globalkeys = gears.table.join(
 	-- awful.key({ mod }, "e", function()
 	--	awful.util.spawn("rofi -show drun -show-icons -theme apps")
 	awful.key({ mod }, "e", function()
-		awful.spawn("ulauncher-toggle")
+		awful.spawn("ulauncher-toggle", false)
 	end),
 	awful.key({ mod, "Shift" }, "e", function()
 		awful.util.spawn(awful.spawn.easy_async_with_shell("sh " .. beautiful.scripts_dir .. "theme.sh"))
