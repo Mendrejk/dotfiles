@@ -14,3 +14,5 @@ nitrogen --restore &
 
 # 4. Launch Awesome
 exec awesome
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
