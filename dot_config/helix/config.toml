@@ -1,0 +1,30 @@
+theme = "gruvbox"
+
+[editor]
+line-number = "relative"
+cursorline = true
+color-modes = true
+true-color = true
+scrolloff = 5
+rulers = [100]
+auto-save = true
+completion-replace = true
+auto-format = true
+idle-timeout = 50
+completion-timeout = 10
+completion-trigger-len = 1
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "warning"
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+
+[editor.search]
+smart-case = true
+
+[editor.indent-guides]
+render = true
+character = "|"

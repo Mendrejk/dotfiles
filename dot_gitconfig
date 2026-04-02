@@ -20,7 +20,7 @@
 	line-numbers = true
 	hyperlinks = true
 	side-by-side = true
-	features = gruvbox-dark
+	features = gruvmax-fang
 
 [merge]
 	conflictStyle = zdiff3
