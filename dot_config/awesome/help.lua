@@ -26,11 +26,7 @@ help.write_to_file = function(path, content)
 end
 
 help.screenshot = function()
-	awful.spawn.easy_async_with_shell(
-		"scrot -s -l mode=edge -e 'xclip -selection clipboard -t image/png -i $f' /home/"
-			.. os.getenv("USER")
-			.. "/Pictures/Screenshots/Screenshot_%Y-%m-%d_%H.%M.%S.png"
-	)
+	awful.spawn("flameshot gui")
 end
 
 help.truncate = function(count)

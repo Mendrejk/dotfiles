@@ -28,3 +28,8 @@ smart-case = true
 [editor.indent-guides]
 render = true
 character = "|"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"

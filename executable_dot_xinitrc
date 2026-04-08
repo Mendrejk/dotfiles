@@ -11,6 +11,7 @@ dbus-update-activation-environment --systemd --all
 # 3. Start background apps
 nitrogen --restore &
 (sleep 3 && ulauncher --hide-window --no-window-shadow) &
+/usr/lib/pipewire-module-xrdp/load_pw_modules.sh &
 
 # 4. Launch Awesome
 exec awesome

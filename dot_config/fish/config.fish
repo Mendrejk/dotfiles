@@ -17,4 +17,4 @@ alias la='eza -la --header --icons'
 alias tree='eza --tree'
 
 zoxide init fish | source
-alias ls='z'
+alias cd='z'
