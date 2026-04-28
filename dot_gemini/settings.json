@@ -25,6 +25,9 @@
     "loadingPhrases": "all"
   },
   "general": {
+    "checkpointing": {
+      "enabled": true
+    },
     "preferredEditor": "neovim",
     "vimMode": true,
     "defaultApprovalMode": "default",

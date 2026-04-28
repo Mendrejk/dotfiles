@@ -29,8 +29,10 @@ Replaces Rofi for a Spotlight-style interface.
 ### Core Packages
 * **CLI Utilities:** `zoxide`, `fzf`, `fd`, `eza`, `fastfetch`
 * **Audio:** `spotify_player` (Colour palettes configured in `theme.toml`)
-* **Editors:** `helix`, `nvim`, `zed`
+* **Editors:** `helix`, `nvim`
 * **Browser:** Zen Browser
+* **Screenshot:** Flameshot (bound to `Super + Shift + s`)
+* **AI Assistants:** `gemini-cli` (terminal) and `antigravity` (IDE) — both authenticated via Google account, powered by the Google AI Pro subscription. No API key required.
 
 ## Tracked Dotfiles (Chezmoi)
 Add the following paths to Chezmoi to capture the system state:
@@ -41,6 +43,7 @@ Add the following paths to Chezmoi to capture the system state:
 * `~/.config/spotify-player/`
 * `~/.config/kitty/`
 * `~/.Xresources`
+* `~/.gemini/settings.json` (only this file — the rest of `~/.gemini/` contains OAuth credentials and must not be tracked)
 
 ## Setup Instructions
 
@@ -55,7 +58,7 @@ chezmoi apply
 
 ### 3. Install Packages
 ```bash
-paru -S awesome picom ulauncher kitty fish zoxide fzf fd eza fastfetch spotify-player helix neovim zed-editor-bin zen-browser-bin nitrogen papirus-icon-theme bibata-cursor-theme-bin rigrep dbus-x11 avahi nss-mdns
+paru -S awesome picom ulauncher kitty fish zoxide fzf fd eza fastfetch spotify-player helix neovim zen-browser-bin nitrogen papirus-icon-theme bibata-cursor-theme-bin flameshot ripgrep dbus-x11 avahi nss-mdns gemini-cli-bin antigravity-bin
 ```
 
 ### 4. Post-Install Configuration
