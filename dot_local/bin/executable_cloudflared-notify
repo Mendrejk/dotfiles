@@ -2,7 +2,6 @@
 
 TYPE=$1
 PORT=$2
-GIST_ID="0ad758c2fa3968b710f59f89361e64b2"
 
 cloudflared tunnel --url "http://localhost:${PORT}" 2>&1 | while read -r line; do
     echo "$line"
@@ -11,16 +10,16 @@ cloudflared tunnel --url "http://localhost:${PORT}" 2>&1 | while read -r line; d
         if [ -n "$URL" ]; then
             echo "$URL" > "/tmp/${TYPE}_url.txt"
             
-            echo "Cloudflare Tunnels Updated: $(date)" > /tmp/gist_update.txt
-            echo "" >> /tmp/gist_update.txt
+            echo "Cloudflare Tunnels Updated: $(date)" > /tmp/tunnel_update.txt
+            echo "" >> /tmp/tunnel_update.txt
             if [ -f /tmp/ttyd_url.txt ]; then
-                echo "TTYD Tunnel (Raw Shell): $(cat /tmp/ttyd_url.txt)" >> /tmp/gist_update.txt
+                echo "TTYD Tunnel (Raw Shell): $(cat /tmp/ttyd_url.txt)" >> /tmp/tunnel_update.txt
             fi
             if [ -f /tmp/webui_url.txt ]; then
-                echo "Zellij WebUI (Native UI): $(cat /tmp/webui_url.txt)" >> /tmp/gist_update.txt
+                echo "Zellij WebUI (Native UI): $(cat /tmp/webui_url.txt)" >> /tmp/tunnel_update.txt
             fi
             
-            gh gist edit "$GIST_ID" -a /tmp/gist_update.txt >/dev/null 2>&1
+            gh issue edit 1 --repo Mendrejk/tunnel-urls --body-file /tmp/tunnel_update.txt >/dev/null 2>&1
         fi
     fi
 done
