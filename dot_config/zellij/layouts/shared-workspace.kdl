@@ -23,11 +23,11 @@ layout {
     }
     tab name="WebUI" {
         pane split_direction="vertical" {
-            pane name="zellij-web-server" command="bash" {
-                args "-c" "echo 'Zellij built-in Web Server is running on port 8082.' && sleep infinity"
+            pane name="caddy (auth proxy)" command="caddy" {
+                args "run" "--config" "/home/mandrake/.config/zellij/Caddyfile"
             }
             pane name="cloudflared (WebUI)" command="cloudflared-notify" {
-                args "webui" "8082"
+                args "webui" "8083"
             }
         }
     }
