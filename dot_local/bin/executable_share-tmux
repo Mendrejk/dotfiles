@@ -13,6 +13,9 @@ else
     # Start cloudflared pointing to ttyd
     tmux new-window -t shared -n "tunnel" "/home/mandrake/.local/share/chezmoi/dot_local/bin/executable_cloudflared-notify ttyd 7681"
     
+    # Focus the first window so when attached it shows the shell instead of the tunnel
+    tmux select-window -t shared:0
+    
     echo "Tmux session 'shared' started with tunnels in the background!"
 fi
 
