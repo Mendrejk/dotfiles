@@ -15,9 +15,11 @@ layout {
         pane split_direction="vertical" {
             pane name="ttyd (raw shell)" command="bash" {
                 args "-c" "source ~/.config/fish/conf.d/secrets.fish 2>/dev/null || true; ttyd -W -p 7681 -c \"${TTYD_USER:-user}:${TTYD_PASS:-pass}\" bash"
+                start_suspended false
             }
             pane name="cloudflared (ttyd)" command="cloudflared-notify" {
                 args "ttyd" "7681"
+                start_suspended false
             }
         }
     }
@@ -25,9 +27,11 @@ layout {
         pane split_direction="vertical" {
             pane name="zellij-web-server" command="bash" {
                 args "-c" "echo 'Zellij built-in Web Server is running on port 8082.' && sleep infinity"
+                start_suspended false
             }
             pane name="cloudflared (WebUI)" command="cloudflared-notify" {
                 args "webui" "8082"
+                start_suspended false
             }
         }
     }
