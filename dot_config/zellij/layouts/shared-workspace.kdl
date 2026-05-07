@@ -1,0 +1,24 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="Workspace" focus=true {
+        pane
+    }
+    tab name="Tunnels" {
+        pane split_direction="vertical" {
+            pane name="ttyd" command="bash" {
+                args "-c" "source ~/.config/zellij/ttyd_secrets.env && env -u ZELLIJ ttyd -W -p 7681 -c \"${TTYD_USER}:${TTYD_PASS}\" zellij attach -c shared"
+            }
+            pane name="cloudflared" command="cloudflared" {
+                args "tunnel" "--url" "http://localhost:7681"
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Check if session already exists
+if zellij list-sessions 2>/dev/null | grep -q "shared"; then
+    echo "Session 'shared' already exists. Attaching..."
+    zellij attach -c shared
+else
+    echo "Starting new 'shared' session with tunnels..."
+    zellij --layout shared-workspace -s shared
+fi

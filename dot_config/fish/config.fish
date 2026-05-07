@@ -6,6 +6,11 @@ alias ll='eza -l --header --icons'
 alias la='eza -la --header --icons'
 alias tree='eza --tree'
 
+# Add ~/.local/bin to PATH
+if not contains "$HOME/.local/bin" $PATH
+    set -x PATH "$HOME/.local/bin" $PATH
+end
+
 zoxide init fish | source
 alias cd='z'
 
