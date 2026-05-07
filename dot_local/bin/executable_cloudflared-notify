@@ -3,6 +3,9 @@
 TYPE=$1
 PORT=$2
 
+# Clear the old URL for this specific type when starting up
+rm -f "/tmp/${TYPE}_url.txt"
+
 cloudflared tunnel --url "http://localhost:${PORT}" 2>&1 | while read -r line; do
     echo "$line"
     if [[ "$line" == *"trycloudflare.com"* ]]; then
@@ -13,7 +16,10 @@ cloudflared tunnel --url "http://localhost:${PORT}" 2>&1 | while read -r line; d
             echo "Cloudflare Tunnels Updated: $(date)" > /tmp/tunnel_update.txt
             echo "" >> /tmp/tunnel_update.txt
             if [ -f /tmp/ttyd_url.txt ]; then
-                echo "TTYD Tunnel (Raw Shell): $(cat /tmp/ttyd_url.txt)" >> /tmp/tunnel_update.txt
+                echo "Tmux TTYD Tunnel (Raw Shell): $(cat /tmp/ttyd_url.txt)" >> /tmp/tunnel_update.txt
+            fi
+            if [ -f /tmp/zellij_ttyd_url.txt ]; then
+                echo "Zellij TTYD Tunnel (Raw Shell): $(cat /tmp/zellij_ttyd_url.txt)" >> /tmp/tunnel_update.txt
             fi
             if [ -f /tmp/webui_url.txt ]; then
                 echo "Zellij WebUI (Native UI): $(cat /tmp/webui_url.txt)" >> /tmp/tunnel_update.txt
