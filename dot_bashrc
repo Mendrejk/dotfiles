@@ -1,7 +1,3 @@
-
-# Kiro CLI pre block. Keep at the top of this file.
-[[ -f "${HOME}/.local/share/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/bashrc.pre.bash"
-
 #
 # ~/.bashrc
 #
@@ -13,6 +9,12 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
+# Google Cloud Configuration
+export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.config/gcp-api.json"
+export GOOGLE_CLOUD_PROJECT="gen-lang-client-0286314161"
+export GOOGLE_CLOUD_LOCATION="global"
 
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/bashrc.post.bash"
+# Load secrets if present
+if [ -f "${HOME}/.config/bash/secrets.bash" ]; then
+    source "${HOME}/.config/bash/secrets.bash"
+fi
