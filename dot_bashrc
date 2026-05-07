@@ -10,7 +10,7 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # Google Cloud Configuration
-export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.config/gcp-api.json"
+export GOOGLE_APPLICATION_CREDENTIALS="${HOME}/.secrets/vertex_key.json"
 export GOOGLE_CLOUD_PROJECT="gen-lang-client-0286314161"
 export GOOGLE_CLOUD_LOCATION="global"
 
