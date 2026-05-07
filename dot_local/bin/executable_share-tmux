@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if tmux has-session -t shared 2>/dev/null; then
+    echo "Tmux session 'shared' already exists."
+else
+    echo "Creating new tmux session 'shared'..."
+    tmux new-session -d -s shared
+    tmux rename-window -t shared:0 "workspace"
+    
+    # Start ttyd sharing this tmux session
+    tmux new-window -t shared -n "ttyd" "ttyd -W -p 7681 -c antitrust-outpost-fling:Scant-Freckles3-Wired tmux attach -t shared"
+    
+    # Start cloudflared pointing to ttyd
+    tmux new-window -t shared -n "tunnel" "/home/mandrake/.local/share/chezmoi/dot_local/bin/executable_cloudflared-notify ttyd 7681"
+    
+    echo "Tmux session 'shared' started with tunnels in the background!"
+fi
+
+echo "Attaching to 'shared' session locally..."
+tmux attach -t shared
