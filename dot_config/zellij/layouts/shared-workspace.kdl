@@ -16,8 +16,18 @@ layout {
             pane name="ttyd" command="bash" {
                 args "-c" "source ~/.config/zellij/ttyd_secrets.env && env -u ZELLIJ ttyd -W -p 7681 -c \"${TTYD_USER}:${TTYD_PASS}\" zellij attach -c shared"
             }
-            pane name="cloudflared" command="cloudflared" {
+            pane name="cloudflared (ttyd)" command="cloudflared" {
                 args "tunnel" "--url" "http://localhost:7681"
+            }
+        }
+    }
+    tab name="WebUI" {
+        pane split_direction="vertical" {
+            pane name="zellij-web-server" command="bash" {
+                args "-c" "echo 'Zellij built-in Web Server is running on port 8082.' && sleep infinity"
+            }
+            pane name="cloudflared (WebUI)" command="cloudflared" {
+                args "tunnel" "--url" "http://localhost:8082"
             }
         }
     }
