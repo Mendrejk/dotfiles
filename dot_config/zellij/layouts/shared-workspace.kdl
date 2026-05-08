@@ -16,7 +16,7 @@ layout {
             pane name="ttyd (raw shell)" command="bash" start_suspended=false {
                 args "-c" "source ~/.config/fish/conf.d/secrets.fish 2>/dev/null || true; ttyd -W -p 7682 -c \"${TTYD_USER:-user}:${TTYD_PASS:-pass}\" bash"
             }
-            pane name="cloudflared (ttyd)" command="cloudflared-notify" start_suspended=false {
+            pane name="cloudflared (ttyd)" command="/home/mandrake/.local/bin/cloudflared-notify" start_suspended=false {
                 args "zellij_ttyd" "7682"
             }
         }
@@ -26,7 +26,7 @@ layout {
             pane name="zellij-web-server" command="bash" start_suspended=false {
                 args "-c" "echo 'Zellij built-in Web Server is running on port 8082.' && sleep infinity"
             }
-            pane name="cloudflared (WebUI)" command="cloudflared-notify" start_suspended=false {
+            pane name="cloudflared (WebUI)" command="/home/mandrake/.local/bin/cloudflared-notify" start_suspended=false {
                 args "webui" "8082"
             }
         }
