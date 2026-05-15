@@ -1,0 +1,4 @@
+Host mandrake-ssh
+    HostName ssh.mandrake.me
+	User mandrake
+	ProxyCommand cloudflared access ssh --hostname %h
