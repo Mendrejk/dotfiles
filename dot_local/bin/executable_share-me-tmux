@@ -11,10 +11,10 @@ else
     tmux rename-window -t shared:0 "workspace"
     
     # Start ttyd sharing this tmux session (Removed basic auth since CF Access handles SSO)
-    tmux new-window -d -t shared -n "ttyd" "ttyd -W -p 7681 tmux attach -t shared"
+    tmux new-window -d -t shared -n "ttyd" "ttyd -t fontFamily=\"JetBrainsMono Nerd Font, FiraCode Nerd Font, MesloLGS NF, Hack Nerd Font, monospace\" -W -p 7681 tmux attach -t shared"
     
     # Start zellij terminal IDE setup over ttyd
-    tmux new-window -d -t shared -n "zellij-ide" "ttyd -W -p 7682 zellij --layout /home/mandrake/.config/zellij/layouts/ide.kdl"
+    tmux new-window -d -t shared -n "zellij-ide" "ttyd -t fontFamily=\"JetBrainsMono Nerd Font, FiraCode Nerd Font, MesloLGS NF, Hack Nerd Font, monospace\" -W -p 7682 zellij --layout /home/mandrake/.config/zellij/layouts/ide.kdl"
     
     # Start pi-webui for mobile-friendly agent interaction
     tmux new-window -d -t shared -n "pi-webui" "npx -y @khimaros/pi-webui --listen 127.0.0.1:8787"
