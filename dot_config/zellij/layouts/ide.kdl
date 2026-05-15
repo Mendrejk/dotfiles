@@ -1,0 +1,14 @@
+layout {
+    pane split_direction="vertical" {
+        pane size="20%" command="yazi"
+        pane size="55%" command="helix" {
+            args "."
+        }
+        pane size="25%" command="omp" {
+            args "--provider" "google-vertex" "--model" "gemini-3.1-pro-preview-customtools" "--smol" "gemini-3.1-pro-preview-customtools"
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}

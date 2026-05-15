@@ -26,3 +26,5 @@ You are operating on a minimal Arch Linux system that serves as a headless host 
 - Prefer CLI-native tools (`yazi`, `helix`, `rg`, `fd`, `bat`). VS Code is strongly disliked.
 - Maintain the "gruvbox-dark" theme consistency across all terminal applications.
 - When generating configs, remember they will be managed by `chezmoi` and pushed to a public repository. Never hardcode secrets. Use `~/.secrets/`.
+- **Package Management:** Always prioritize Arch Linux repositories. Use ONLY `paru` as the helper for all AUR and Arch package management operations. When a package is in the AUR, prefer compiling from source if it is fast, but use the `-bin` pre-compiled version if compilation would take a long time.
+- **Sudo Access:** The `mandrake` user has passwordless `sudo` access. You can safely use `sudo` without worrying about interactive password prompts.

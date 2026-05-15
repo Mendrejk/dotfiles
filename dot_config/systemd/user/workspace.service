@@ -1,0 +1,14 @@
+[Unit]
+Description=Mandrake Tmux Workspace and Cloudflare Tunnels
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+ExecStart=/home/mandrake/.local/bin/share-me-tmux
+ExecStop=/usr/bin/tmux kill-session -t shared
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
