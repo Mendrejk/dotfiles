@@ -25,8 +25,9 @@
 - [ ] Test the integration by asking the agents contextual questions about the Vault.
 
 ## 5. Storage & Backup Strategy
-- [ ] Configure an automated backup script targeting the 1TB HDD (`/mnt/ai_data`).
-- [ ] Use `rsync` or `borg` to create append-only/versioned snapshots of `~/Vault` and `~/.config`.
+- [ ] Configure an automated backup script targeting the 1TB HDD (`/mnt/ai_data`), restricting the backup footprint to roughly 50% of the drive (~500GB).
+- [ ] Use `borg` (highly recommended for deduplication) or `rsync` to create versioned snapshots of `~/Vault` and `~/.config`.
+- [ ] Implement an auto-rotation retention policy (e.g., keep 7 daily, 4 weekly, and 6 monthly backups) to automatically prune old archives and prevent filling the disk.
 - [ ] Set strict permissions on `/mnt/ai_data` to ensure backups cannot be accidentally overwritten or deleted by user error or AI agent automation.
 
 ---
