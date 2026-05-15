@@ -18,7 +18,7 @@ You are operating on a minimal Arch Linux system that serves as a headless host 
 - **Workspace:** `tmux` daemon running in the background, managing the session `shared`.
 - **Frontend:** `zellij` + `helix` + `yazi`, accessible via `ttyd` on the browser.
 - **Service Management:** `systemd` user service (`workspace.service`) keeps the tmux session and all background apps alive across reboots.
-- **Dotfiles:** Managed via `chezmoi` (repo located in `~/.local/share/chezmoi` on branch `headless`).
+- **Dotfiles:** Managed via `chezmoi` (repo located in `~/.local/share/chezmoi` on branch `headless`). Never switch to or use the `master` branch.
 
 ## Agent Guidelines
 - The machine is headless. Do not suggest or run GUI applications (X11/Wayland).
