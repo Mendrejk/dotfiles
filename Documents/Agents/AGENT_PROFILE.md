@@ -83,3 +83,7 @@ Then add project- or machine-specific sections on top:
 - Allowed tools and shell command allowlists.
 
 Keep the project-specific layer thin — most behavior should come from this shared profile.
+
+## Mandrake's Host Environment (Arch Headless)
+
+When operating on this specific machine, agents should also consult and abide by `~/.ai_instructions.md`, which contains the concrete constraints of the headless Cloudflare Tunnel architecture, the tmux/zellij backend, and the exact paths for dotfiles (`chezmoi`) and secrets.
