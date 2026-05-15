@@ -46,5 +46,9 @@ else
     echo "Tmux session 'shared' started with the persistent Cloudflare tunnel!"
 fi
 
-echo "Attaching to 'shared' session locally..."
-tmux attach -t shared
+if [ -t 0 ]; then
+    echo "Attaching to 'shared' session locally..."
+    tmux attach -t shared
+else
+    echo "Running headlessly (no TTY). Skipping attach."
+fi
