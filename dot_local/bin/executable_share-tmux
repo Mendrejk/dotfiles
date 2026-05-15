@@ -8,10 +8,49 @@ else
     tmux rename-window -t shared:0 "workspace"
     
     # Start ttyd sharing this tmux session
-    tmux new-window -t shared -n "ttyd" "ttyd -W -p 7681 -c antitrust-outpost-fling:Scant-Freckles3-Wired tmux attach -t shared"
+    tmux new-window -d -t shared -n "ttyd" "ttyd -W -p 7681 -c antitrust-outpost-fling:Scant-Freckles3-Wired tmux attach -t shared"
     
     # Start cloudflared pointing to ttyd
-    tmux new-window -t shared -n "tunnel" "/home/mandrake/.local/share/chezmoi/dot_local/bin/executable_cloudflared-notify ttyd 7681"
+    tmux new-window -d -t shared -n "tunnel" "/home/mandrake/.local/bin/cloudflared-notify ttyd 7681"
+
+    # Start pi-webui for mobile-friendly agent interaction
+    tmux new-window -d -t shared -n "pi-webui" "npx -y @khimaros/pi-webui --listen 127.0.0.1:8787"
+
+    # Start caddy for basic auth
+    tmux new-window -d -t shared -n "pi-webui-auth" "caddy run --config /home/mandrake/.local/etc/Caddyfile"
+
+    # Start cloudflared pointing to caddy
+    tmux new-window -d -t shared -n "tunnel-pi-webui" "/home/mandrake/.local/bin/cloudflared-notify pi_webui 8788"
+
+    # Start Pico for alternative mobile interaction
+    tmux new-window -d -t shared -n "pico" "pico-app --host 127.0.0.1 --port 3141 --no-open"
+
+    # Start cloudflared pointing to Pico's caddy proxy
+    tmux new-window -d -t shared -n "tunnel-pico" "/home/mandrake/.local/bin/cloudflared-notify pico 3142"
+
+    # Start pi-web (ravshansbox)
+    tmux new-window -d -t shared -n "pi-web" "npx -y pi-web@latest --port 8192 --host 127.0.0.1"
+
+    # Start cloudflared pointing to pi-web's caddy proxy
+    tmux new-window -d -t shared -n "tunnel-pi-web" "/home/mandrake/.local/bin/cloudflared-notify pi_web 8193"
+
+    # Start oh-my-pi with webui
+    tmux new-window -d -t shared -n "omp-webui" "ttyd -W -p 3848 omp --provider google-vertex --model gemini-3.1-pro-preview-customtools --smol gemini-3.1-pro-preview-customtools"
+
+    # Start cloudflared pointing to omp-webui's caddy proxy
+    tmux new-window -d -t shared -n "tunnel-omp-webui" "/home/mandrake/.local/bin/cloudflared-notify omp_webui 3849"
+    
+    # Start wgnr-pi
+    tmux new-window -d -t shared -n "wgnr-pi" "WGPI_PORT=4815 wgnr-pi"
+
+    # Start cloudflared pointing to wgnr-pi's caddy proxy
+    tmux new-window -d -t shared -n "tunnel-wgnr-pi" "/home/mandrake/.local/bin/cloudflared-notify wgnr_pi 4816"
+
+    # Start pi-dashboard
+    tmux new-window -d -t shared -n "pi-dashboard" "cd /home/mandrake/pi-dashboard && PI_DASH_PORT=7777 npm start"
+
+    # Start cloudflared pointing to pi-dashboard's caddy proxy
+    tmux new-window -d -t shared -n "tunnel-pi-dashboard" "/home/mandrake/.local/bin/cloudflared-notify pi_dashboard 7778"
     
     # Focus the first window so when attached it shows the shell instead of the tunnel
     tmux select-window -t shared:0

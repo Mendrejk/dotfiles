@@ -21,8 +21,23 @@ cloudflared tunnel --url "http://localhost:${PORT}" 2>&1 | while read -r line; d
             if [ -f /tmp/zellij_ttyd_url.txt ]; then
                 echo "Zellij TTYD Tunnel (Raw Shell): $(cat /tmp/zellij_ttyd_url.txt)" >> /tmp/tunnel_update.txt
             fi
+            if [ -f /tmp/pi_webui_url.txt ]; then
+                echo "Pi WebUI: $(cat /tmp/pi_webui_url.txt)" >> /tmp/tunnel_update.txt
+            fi
+            if [ -f /tmp/pi_mobile_url.txt ]; then
+                echo "Pi Mobile: $(cat /tmp/pi_mobile_url.txt)" >> /tmp/tunnel_update.txt
+            fi
+            if [ -f /tmp/pico_url.txt ]; then
+                echo "Pico WebUI: $(cat /tmp/pico_url.txt)" >> /tmp/tunnel_update.txt
+            fi
+            if [ -f /tmp/pi_web_url.txt ]; then
+                echo "Pi-Web (ravshansbox): $(cat /tmp/pi_web_url.txt)" >> /tmp/tunnel_update.txt
+            fi
+            if [ -f /tmp/omp_webui_url.txt ]; then
+                echo "Oh My Pi WebUI: $(cat /tmp/omp_webui_url.txt)" >> /tmp/tunnel_update.txt
+            fi
             if [ -f /tmp/webui_url.txt ]; then
-                echo "Zellij WebUI (Native UI): $(cat /tmp/webui_url.txt)" >> /tmp/tunnel_update.txt
+                echo "WebUI: $(cat /tmp/webui_url.txt)" >> /tmp/tunnel_update.txt
             fi
             
             gh issue edit 1 --repo Mendrejk/tunnel-urls --body-file /tmp/tunnel_update.txt >/dev/null 2>&1
