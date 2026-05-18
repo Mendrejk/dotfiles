@@ -10,7 +10,6 @@ You are operating on a minimal Arch Linux system that serves as a headless host 
   - Exposed securely via Cloudflare Tunnels (`cloudflared`).
   - Base domain: `mandrake.me`
   - Subdomains route to specific services (e.g., `ide.mandrake.me` for Zellij/Helix workspace, `hub.mandrake.me` for Gateway).
-  - Corporate WiFi autoconnect is disabled to prevent firewall blocking of outbound port 7844 (QUIC). The machine relies on a cellular hotspot.
   - Automatic restart on kernel panic is enabled via `sysctl`.
 
 ## Stack & Tooling
@@ -26,5 +25,6 @@ You are operating on a minimal Arch Linux system that serves as a headless host 
 - Prefer CLI-native tools (`yazi`, `helix`, `rg`, `fd`, `bat`). VS Code is strongly disliked.
 - Maintain the "gruvbox-dark" theme consistency across all terminal applications.
 - When generating configs, remember they will be managed by `chezmoi` and pushed to a public repository. Never hardcode secrets. Use `~/.secrets/`.
-- **Package Management:** Always prioritize Arch Linux repositories. Use ONLY `paru` as the helper for all AUR and Arch package management operations. When a package is in the AUR, prefer compiling from source if it is fast, but use the `-bin` pre-compiled version if compilation would take a long time.
+- **Package Management:** Always prioritize Arch Linux repositories. Use ONLY `paru` as the helper for all AUR and Arch package management operations.
+- **AUR Package Selection:** When installing from the AUR, you must pause and assess the package size before compiling. If the software is a large desktop application, a heavy daemon, or a complex tool with dozens of dependencies (where compilation would take more than a minute), you MUST search for and install the `-bin` pre-compiled version instead. You may compile from source only if the package is lightweight or if no `-bin` alternative exists.
 - **Sudo Access:** The `mandrake` user has passwordless `sudo` access. You can safely use `sudo` without worrying about interactive password prompts.
