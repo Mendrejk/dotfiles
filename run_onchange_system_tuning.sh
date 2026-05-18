@@ -21,10 +21,12 @@ EOF'
 sudo systemctl enable --now tlp.service
 sudo systemctl enable --now nbfc_service.service
 
-# Setup NBFC for Asus X580VD (if installed)
-if command -v nbfc &> /dev/null; then
-    sudo nbfc config -a "ASUS Vivobook X580VD"
-    sudo nbfc start
+# Setup ASUS Fan Control (Option 1 - ACPI)
+if command -v asus-fan-control &> /dev/null; then
+    # Custom fan curve for X580VD (0 RPM until 55C)
+    # The default temperatures are typically 8 steps. Setting first to 55 means 0 RPM until 55C.
+    sudo asus-fan-control set-temps 55 60 62 65 68 72 76 80
+    sudo systemctl enable --now afc.service
 fi
 
 # Disable Bluetooth
